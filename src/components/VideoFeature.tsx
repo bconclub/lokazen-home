@@ -128,7 +128,12 @@ export default function VideoFeature({
 
   // Tall section; inner content pins while the frame sequence scrubs with scroll.
   return (
-    <section ref={sectionRef} className="relative w-full bg-bg" style={{ height: "130vh" }}>
+    <section
+      ref={sectionRef}
+      /* Pin travel = height − 100dvh. Mobile shorter (faster scrub), desktop
+         taller (slower/more deliberate) — opposite feels per device. */
+      className="relative h-[120vh] w-full bg-bg md:h-[185vh]"
+    >
       <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 pb-10 pt-24 md:px-12 md:pt-20">
         {grid}
       </div>

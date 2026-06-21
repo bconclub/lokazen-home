@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-22 · Device-specific scroll speed (desktop slower, mobile faster)
+
+- Section height now responsive: mobile 120vh (pin travel 20vh → snappier), desktop
+  185vh (travel 85vh → slower/more deliberate). Fixes "desktop too fast, mobile too
+  slow." Scrub + snap scale with travel automatically. Tunable via the two heights.
+
 ## 2026-06-22 · Auto-snap to next section at 80% + bigger §3 portrait
 
 - New ScrollSnap: once a pinned clip reaches 80%, auto-advances (smooth) to the next
