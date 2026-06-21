@@ -18,11 +18,17 @@
 
 Whole page is built around **animated 3D vectors** (user-supplied). Every section anchored by a hero 3D object that reacts to scroll.
 
-### Render approach — TWO options on the table (decide per asset)
-1. **Real-time WebGL** — React Three Fiber. Vectors imported as `.glb`/`.gltf`, animated live (rotation, scroll-driven camera, material shaders). Pros: crisp at any resolution, interactive, light payload. Best for geometric/abstract vectors.
-2. **Pre-rendered video loops** — e.g. Higgs Field MCP generates `.mp4`/`.webm` loops, played as `<video>` backgrounds with scroll-scrub. Pros: photoreal, heavy motion/lighting baked in. Best for cinematic shots.
+### Render approach — LOCKED: Higgs Field video, scroll-scrubbed
+- **Primary path:** vectors animated as cinematic clips generated via **Higgs Field MCP** (`https://mcp.higgsfield.ai/mcp`), exported to `/public/video/*.webm|*.mp4`.
+- **Playback:** clips are **scroll-scrubbed**, not autoplayed. The `ScrollVideo` component pins the clip (sticky) across the section's scroll height and maps scroll progress 0→1 onto `video.currentTime`. Scrolling = scrubbing the footage frame-by-frame.
+- **Encoding:** keyframe-dense (`-g 1` h264, or VP9) so seeking is smooth; ship a **poster frame** per clip for instant first paint.
+- **R3F fallback:** the `three`/R3F stack stays installed for any interactive/abstract object that's better live than baked. Section 1 currently uses an R3F placeholder until its Higgs clip exists.
+- **Reduced motion:** clip holds on poster/first frame, no scrub.
 
-> **Default plan:** R3F real-time for the abstract vectors; reserve video loops for any photoreal hero. Confirm per-section once screens land.
+#### Per-section clip pipeline
+1. Generate clip in Higgs Field (from the section's vector + screen direction).
+2. Drop export → `/public/video/sectionN.webm` (+ `sectionN-poster.jpg`).
+3. `<ScrollVideo src="/video/sectionN.webm" poster="/video/sectionN-poster.jpg">` with the section's overlay copy as children.
 
 ### Motion language
 - **Scroll = camera.** Page scroll drives a single continuous 3D camera path; sections are "stops."
