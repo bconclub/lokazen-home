@@ -1,130 +1,115 @@
 "use client";
 
-import { useRef, useEffect } from "react";
-
-type Media =
-  | { type: "video"; src: string; poster?: string; aspect: "square" | "video" }
-  | { type: "placeholder"; label: string; aspect: "square" | "video" };
+import { useRef } from "react";
+import { usePlayInView } from "@/hooks/usePlayInView";
 
 type VideoFeatureProps = {
+  eyebrow: string;
   title: React.ReactNode;
-  subtitle: string;
-  caption?: React.ReactNode;
-  stats?: { value: string; label: string }[];
-  cta?: { label: string; href: string };
-  media: Media;
+  sub: string;
+  chips?: string[];
+  line?: string;
+  cta: { label: string; href: string };
+  /** clip source — omit when supplying mediaNode */
+  videoSrc?: string;
+  poster?: string;
+  /** custom visual instead of a clip (e.g. a code-built figure) */
+  mediaNode?: React.ReactNode;
+  /** clip aspect — controls the media column box */
+  aspect?: "square" | "wide" | "tall";
+  /** flip columns: video left, details right */
   reverse?: boolean;
-  showWordmark?: boolean;
 };
 
-function LokazenMark() {
-  return (
-    <div className="flex items-center gap-2">
-      <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-brand text-[10px] font-black text-white">
-        L
-      </span>
-      <span className="text-sm font-semibold uppercase tracking-[0.32em] text-fg/90">
-        Lokazen
-      </span>
-    </div>
-  );
-}
+const ASPECT: Record<string, string> = {
+  square: "aspect-square",
+  wide: "aspect-video",
+  tall: "aspect-[4/3]",
+};
 
 /**
- * Borderless feature section — details on one side, the clip running on the
- * other. The clip's own black background bleeds seamlessly into the page (no
- * border, no card). Desktop split → stacks on mobile so the scroll stays clean.
+ * Flat, borderless feature section. The clip's black background bleeds straight
+ * into the page (no card, no border). Details left, clip right; stacks on mobile.
+ * Clip plays when scrolled into view (usePlayInView).
  */
 export default function VideoFeature({
+  eyebrow,
   title,
-  subtitle,
-  caption,
-  stats,
+  sub,
+  chips,
+  line,
   cta,
-  media,
+  videoSrc,
+  poster,
+  mediaNode,
+  aspect = "square",
   reverse = false,
-  showWordmark = true,
 }: VideoFeatureProps) {
   const video = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const v = video.current;
-    if (v) v.play().catch(() => {});
-  }, []);
+  usePlayInView(video);
 
   return (
-    <section className="relative min-h-screen w-full bg-bg px-6 py-20 md:px-12 md:py-24">
-      {showWordmark && (
-        <div className="mx-auto mb-12 max-w-7xl md:mb-16">
-          <LokazenMark />
-        </div>
-      )}
-
+    <section className="relative flex min-h-screen w-full items-center bg-bg px-6 py-20 md:px-12 md:py-24">
       <div
-        className={`mx-auto grid max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-16 ${
+        className={`mx-auto grid w-full max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-16 ${
           reverse ? "md:[&>*:first-child]:order-2" : ""
         }`}
       >
         {/* details */}
         <div className="flex flex-col">
-          <h2 className="text-5xl font-extrabold leading-[1.0] tracking-tight md:text-7xl">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">
+            {eyebrow}
+          </p>
+          <h2 className="mt-5 text-4xl font-extrabold leading-[1.03] tracking-tight md:text-6xl">
             {title}
           </h2>
-          <p className="mt-6 max-w-sm text-[11px] font-semibold uppercase leading-relaxed tracking-[0.22em] text-muted">
-            {subtitle}
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg">
+            {sub}
           </p>
 
-          {stats && (
-            <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6">
-              {stats.map((s) => (
-                <div key={s.label}>
-                  <p className="text-3xl font-extrabold md:text-4xl">{s.value}</p>
-                  <p className="mt-1 text-xs text-muted">{s.label}</p>
-                </div>
+          {chips && (
+            <div className="mt-7 flex flex-wrap gap-3">
+              {chips.map((c) => (
+                <span
+                  key={c}
+                  className="rounded-full border border-line bg-bg-elev px-4 py-1.5 text-sm font-semibold text-fg"
+                >
+                  {c}
+                </span>
               ))}
             </div>
           )}
 
-          {cta && (
-            <a
-              href={cta.href}
-              className="mt-10 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-bg-elev/60 px-6 py-3 text-sm font-semibold text-fg transition-colors hover:border-accent"
-            >
-              {cta.label}
-              <span className="text-accent">›</span>
-            </a>
-          )}
-
-          {caption && (
-            <p className="mt-12 flex items-start gap-2 text-sm leading-snug text-muted">
-              <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-              {caption}
+          {line && (
+            <p className="mt-7 border-l-2 border-accent pl-4 text-base font-medium italic text-fg/90">
+              {line}
             </p>
           )}
+
+          <a
+            href={cta.href}
+            className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+          >
+            {cta.label}
+            <span>›</span>
+          </a>
         </div>
 
-        {/* media — borderless, bleeds into bg */}
-        <div
-          className={`relative w-full ${
-            media.aspect === "square" ? "aspect-square" : "aspect-video"
-          }`}
-        >
-          {media.type === "video" ? (
+        {/* media — flat, borderless, bleeds into bg */}
+        <div className={`relative w-full ${ASPECT[aspect]}`}>
+          {mediaNode ? (
+            mediaNode
+          ) : (
             <video
               ref={video}
-              src={media.src}
-              poster={media.poster}
+              src={videoSrc}
+              poster={poster}
               muted
               loop
-              autoPlay
               playsInline
               preload="auto"
               className="absolute inset-0 h-full w-full object-contain"
             />
-          ) : (
-            <div className="absolute inset-0 grid place-items-center rounded-2xl border border-dashed border-line text-center text-xs uppercase tracking-[0.25em] text-muted">
-              {media.label}
-            </div>
           )}
         </div>
       </div>

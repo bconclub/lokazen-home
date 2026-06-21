@@ -1,80 +1,69 @@
 import VideoFeature from "@/components/VideoFeature";
-import MapSection from "@/components/MapSection";
+import GlobalReachSection from "@/components/GlobalReachSection";
+import OwnerVisual from "@/components/OwnerVisual";
+
+const HUB = "/platform";
 
 export default function Home() {
   return (
     <main className="relative bg-bg">
-      {/* ===== SECTION 1 — LOCATION INTELLIGENCE 2026 (building clip) ===== */}
+      {/* ===== SECTION 1 — What Lokazen is (iso city, orange beam) ===== */}
       <VideoFeature
+        eyebrow="AI-Powered Location Intelligence"
         title={
           <>
-            Location
+            Match your brand
             <br />
-            Intelligence
-            <br />
-            <span className="text-gradient">2026</span>
+            to the <span className="text-gradient">right space.</span>
           </>
         }
-        subtitle="AI-Powered Real Estate Matching for the Next Generation"
-        caption={
-          <>
-            Lokazen matches.
-            <br />
-            Business grows.
-          </>
-        }
-        media={{
-          type: "video",
-          src: "/video/section1.mp4",
-          poster: "/video/section1-poster.jpg",
-          aspect: "square",
-        }}
+        sub="Lokazen reads Bangalore's commercial map the way brokers can't. 37,000+ outlets tracked. 22,000+ brands mapped. 40 zones decoded."
+        line="Stop guessing locations. Start matching them."
+        cta={{ label: "Explore Match", href: HUB }}
+        videoSrc="/video/s1.mp4"
+        poster="/video/s1-poster.jpg"
+        aspect="tall"
       />
 
-      {/* ===== SECTION 2 — DUAL AI SCORING SYSTEM (awaiting clip) ===== */}
+      {/* ===== SECTION 2 — Dual AI Scoring (tower BFI+PFI) ===== */}
       <VideoFeature
+        eyebrow="Dual AI Scoring System"
         title={
           <>
-            Dual AI
+            Two indexes.
             <br />
-            Scoring System
+            One <span className="text-gradient">perfect fit.</span>
           </>
         }
-        subtitle="Two indexes. One perfect match."
-        caption={
-          <>
-            Smarter decisions.
-            <br />
-            Stronger portfolios.
-          </>
-        }
-        media={{ type: "placeholder", label: "Section 2 clip", aspect: "square" }}
+        sub="BFI scores the building. PFI scores the portfolio fit. Together they tell you if a space actually works for your brand before you sign."
+        chips={["BFI 92/100", "PFI 87/100"]}
+        line={`"87% suitable for a café brand." That's not a hunch. That's the data.`}
+        cta={{ label: "Score a Location", href: HUB }}
+        videoSrc="/video/s2.mp4"
+        poster="/video/s2-poster.jpg"
+        aspect="square"
       />
 
-      {/* ===== SECTION 3 — MAP / LOCATION MATCH OVERLAY (map clip) ===== */}
-      <MapSection
-        src="/video/section2.mp4"
-        poster="/video/section2-poster.jpg"
-      />
-
-      {/* ===== SECTION 4 — GLOBAL REACH. LOCAL PRECISION. (awaiting clip) ===== */}
+      {/* ===== SECTION 3 — For property owners (demand board) ===== */}
       <VideoFeature
+        eyebrow="For Property Owners"
         title={
           <>
-            Global Reach.
+            List smarter.
             <br />
-            Local <span className="text-gradient">Precision.</span>
+            <span className="text-gradient">Lease faster.</span>
           </>
         }
-        subtitle="AI-Driven Location Intelligence That Finds What Others Miss."
-        stats={[
-          { value: "50+", label: "Markets" },
-          { value: "1.2M+", label: "Properties Analyzed" },
-          { value: "99%", label: "Match Accuracy" },
-        ]}
-        cta={{ label: "See How It Works", href: "#how" }}
-        media={{ type: "placeholder", label: "Section 4 clip", aspect: "video" }}
+        sub="Skip the cold calls and TO-LET banners. Lokazen surfaces your space to brands that actually fit, and filters out everyone who doesn't."
+        line="Fewer questions. Better tenants. Real demand data."
+        cta={{ label: "List Your Space", href: HUB }}
+        mediaNode={<OwnerVisual />}
+        aspect="tall"
+        reverse
       />
+
+      {/* ===== SECTION 4 — The Intelligence (world map, arcs) ===== */}
+      <GlobalReachSection ctaHref={HUB} />
     </main>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
+import { usePlayInView } from "@/hooks/usePlayInView";
 
 /**
  * Full-bleed map section. The clip already carries the LOKAZEN wordmark, the
@@ -15,11 +16,7 @@ export default function MapSection({
   poster?: string;
 }) {
   const video = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const v = video.current;
-    if (v) v.play().catch(() => {});
-  }, []);
+  usePlayInView(video);
 
   return (
     <section className="relative flex min-h-screen w-full items-center justify-center bg-bg px-4 py-16 md:px-12">
@@ -30,7 +27,6 @@ export default function MapSection({
           poster={poster}
           muted
           loop
-          autoPlay
           playsInline
           preload="auto"
           className="absolute inset-0 h-full w-full object-contain"

@@ -72,6 +72,12 @@ html.lenis body {
   color: var(--bg);
 }
 
+@keyframes dashflow {
+  to {
+    stroke-dashoffset: -60;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
