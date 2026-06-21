@@ -71,7 +71,18 @@ Whole page is built around **animated 3D vectors** (user-supplied). Every sectio
 
 ---
 
-## 4. The Four Sections — PROPOSED (condensed from live site, needs user confirm)
+## 4. The Four Sections — LOCKED (from user reference image)
+
+> 4 scrollable, borderless sections. Each: LOKAZEN wordmark + left details + right visual, the clip's black bg bleeding seamlessly into the page (no card/border). Desktop split → stacks on mobile.
+
+1. **Location Intelligence 2026** — building/BFI-PFI clip (`section1.mp4`). ✅ built
+2. **Dual AI Scoring System** — "Two indexes. One perfect match." ⏳ awaiting clip (placeholder)
+3. **Map / Location Match Overlay** — full-bleed map clip (`section2.mp4`). ✅ built
+4. **Global Reach. Local Precision.** — stats (50+ Markets · 1.2M+ Properties · 99% Match Accuracy) + "See How It Works". ⏳ awaiting clip (placeholder)
+
+> Videos play (autoplay+loop, muted), borderless. NOT scroll-scrubbed (changed per user: "video running"). Mobile gets dedicated clip versions later.
+
+### (archived) earlier proposal — condensed from live site
 
 > Real lokazen.in has ~9 blocks. For the 3D landing we condense to **4**. Build one at a time, in order, until done. Each gets a Higgs Field scroll-scrubbed clip + a vector.
 
