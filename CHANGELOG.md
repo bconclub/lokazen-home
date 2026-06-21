@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-22 · Consistent desktop text→clip spacing
+
+- Portrait clips were centered in their column, floating far from the text while
+  square/tall clips sat near it — inconsistent gaps. Now portrait clips align toward
+  the text column on desktop (center on mobile). All sections share a 32px gap.
+
 ## 2026-06-22 · Fix §3 portrait overflow on mobile
 
 - Portrait clip was 570px tall on mobile → content overflowed the pinned viewport,

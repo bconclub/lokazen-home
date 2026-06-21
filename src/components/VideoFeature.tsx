@@ -29,8 +29,8 @@ const ASPECT: Record<string, string> = {
   wide: "aspect-video",
   tall: "aspect-[4/3]",
   // smaller on mobile so text + tall clip fit one pinned screen (no clipping)
-  portrait: "aspect-[496/864] mx-auto max-w-[200px] md:max-w-[440px]",
-  portraitWide: "aspect-[560/752] mx-auto max-w-[220px] md:max-w-[440px]",
+  portrait: "aspect-[496/864] max-w-[200px] md:max-w-[440px]",
+  portraitWide: "aspect-[560/752] max-w-[220px] md:max-w-[440px]",
 };
 
 const container: Variants = {
@@ -58,6 +58,15 @@ export default function VideoFeature({
   const sectionRef = useRef<HTMLElement>(null);
   const shown = useInView(sectionRef);
   const animate = shown ? "show" : "hide";
+
+  // Width-capped (portrait) clips: center on mobile, but on desktop pull toward
+  // the text column so every section has the same text→clip gap.
+  const isPortrait = aspect === "portrait" || aspect === "portraitWide";
+  const align = isPortrait
+    ? reverse
+      ? "mx-auto md:mr-0 md:ml-auto"
+      : "mx-auto md:ml-0 md:mr-auto"
+    : "";
 
   const details = (
     <motion.div
@@ -126,7 +135,7 @@ export default function VideoFeature({
     >
       {details}
       <motion.div
-        className={`relative w-full ${ASPECT[aspect]}`}
+        className={`relative w-full ${ASPECT[aspect]} ${align}`}
         initial={{ opacity: 0 }}
         animate={{ opacity: shown ? 1 : 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
