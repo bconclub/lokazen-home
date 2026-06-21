@@ -54,36 +54,28 @@ export default function GlobalReachSection({
         {/* details */}
         <div>
           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">
-            The Data Layer Brokers Don&apos;t Show You
+            Location Intelligence
           </p>
-          <h2 className="mt-5 text-5xl font-extrabold leading-[1.0] tracking-tight md:text-7xl">
-            Global reach.
+          <h2 className="mt-5 text-4xl font-extrabold leading-[1.03] tracking-tight md:text-6xl">
+            Make data-driven
             <br />
-            Local <span className="text-gradient">precision.</span>
+            location <span className="text-gradient">decisions.</span>
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg">
-            Location intelligence that finds what others miss, from a single zone
-            to the entire city.
+            Real-time market intelligence, foot traffic patterns, and competitive
+            analysis across 40 Bangalore zones, before you commit to anything.
           </p>
 
-          <div className="mt-10 flex flex-wrap gap-x-12 gap-y-6">
-            {[
-              { v: "40", l: "Zones" },
-              { v: "1.2M+", l: "Data Points" },
-              { v: "99%", l: "Match Accuracy" },
-            ].map((s) => (
-              <div key={s.l}>
-                <p className="text-3xl font-extrabold md:text-4xl">{s.v}</p>
-                <p className="mt-1 text-xs text-muted">{s.l}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-7 border-l-2 border-accent pl-4 text-base font-medium italic text-fg/90">
+            Footfall. Category mix. Brand density. The data layer behind every
+            Lokazen match.
+          </p>
 
           <a
             href={ctaHref}
-            className="mt-10 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+            className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
           >
-            See How It Works <span>›</span>
+            Go to Intelligence <span>›</span>
           </a>
         </div>
 
