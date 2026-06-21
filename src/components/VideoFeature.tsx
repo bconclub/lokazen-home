@@ -118,7 +118,7 @@ export default function VideoFeature({
 
   const grid = (
     <div
-      className={`mx-auto grid w-full max-w-7xl items-center gap-10 md:grid-cols-2 md:gap-16 ${
+      className={`mx-auto grid w-full max-w-7xl items-center gap-2 md:grid-cols-2 md:gap-8 ${
         reverse ? "md:[&>*:first-child]:order-2" : ""
       }`}
     >
@@ -156,9 +156,10 @@ export default function VideoFeature({
   }
 
   // Clip → tall section; inner content pins while the clip scrubs with scroll.
+  // Shorter section = less scroll per frame = more sensitive scrub.
   return (
-    <section ref={sectionRef} className="relative w-full bg-bg" style={{ height: "220vh" }}>
-      <div className="sticky top-0 flex h-screen w-full items-center px-6 py-16 md:px-12">
+    <section ref={sectionRef} className="relative w-full bg-bg" style={{ height: "160vh" }}>
+      <div className="sticky top-0 flex h-screen w-full items-center px-6 py-8 md:px-12">
         {grid}
       </div>
     </section>
