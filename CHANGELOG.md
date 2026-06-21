@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-06-22 · Proper staggered fade-ins + per-device scroll length
+
+- Real entrance animations: eyebrow → heading → sub → chips/line → button fade +
+  rise in, staggered, via framer-motion, re-triggered each time a section scrolls/
+  snaps into view (useInView, rect-based). Clip fades in too. (CSS transition delays
+  were getting reset by re-renders — switched to framer-motion.)
+- Scroll length per device: mobile 140vh (slower scrub — was too fast), desktop 150vh
+  (shorter — was too long).
+
 ## 2026-06-22 · Reliable section snapping (CSS on mobile, JS on desktop)
 
 - Mobile snap was unreliable: JS scroll-to fights touch momentum. Split by platform:

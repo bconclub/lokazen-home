@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
+import { motion, type Variants } from "framer-motion";
 import ScrollCanvas from "@/components/ScrollCanvas";
-import FadeIn from "@/components/FadeIn";
+import { useInView } from "@/hooks/useInView";
 
 type VideoFeatureProps = {
   eyebrow: string;
@@ -31,58 +32,14 @@ const ASPECT: Record<string, string> = {
   portraitWide: "aspect-[560/752] mx-auto max-w-[440px]",
 };
 
-function Details({
-  eyebrow,
-  title,
-  sub,
-  chips,
-  line,
-  cta,
-}: Pick<
-  VideoFeatureProps,
-  "eyebrow" | "title" | "sub" | "chips" | "line" | "cta"
->) {
-  return (
-    <div className="flex flex-col">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">
-        {eyebrow}
-      </p>
-      <h2 className="mt-5 text-4xl font-extrabold leading-[1.03] tracking-tight md:text-6xl">
-        {title}
-      </h2>
-      <p className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg">
-        {sub}
-      </p>
-
-      {chips && (
-        <div className="mt-7 flex flex-wrap gap-3">
-          {chips.map((c) => (
-            <span
-              key={c}
-              className="rounded-full border border-line bg-bg-elev px-4 py-1.5 text-sm font-semibold text-fg"
-            >
-              {c}
-            </span>
-          ))}
-        </div>
-      )}
-
-      {line && (
-        <p className="mt-7 border-l-2 border-accent pl-4 text-base font-medium italic text-fg/90">
-          {line}
-        </p>
-      )}
-
-      <a
-        href={cta.href}
-        className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
-      >
-        {cta.label}
-        <span>›</span>
-      </a>
-    </div>
-  );
-}
+const container: Variants = {
+  hide: {},
+  show: { transition: { staggerChildren: 0.12, delayChildren: 0.05 } },
+};
+const item: Variants = {
+  hide: { opacity: 0, y: 18 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+};
 
 export default function VideoFeature({
   eyebrow,
@@ -98,6 +55,67 @@ export default function VideoFeature({
   fade = false,
 }: VideoFeatureProps) {
   const sectionRef = useRef<HTMLElement>(null);
+  const shown = useInView(sectionRef);
+  const animate = shown ? "show" : "hide";
+
+  const details = (
+    <motion.div
+      className="flex flex-col"
+      variants={container}
+      initial="hide"
+      animate={animate}
+    >
+      <motion.p
+        variants={item}
+        className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent"
+      >
+        {eyebrow}
+      </motion.p>
+      <motion.h2
+        variants={item}
+        className="mt-5 text-4xl font-extrabold leading-[1.03] tracking-tight md:text-6xl"
+      >
+        {title}
+      </motion.h2>
+      <motion.p
+        variants={item}
+        className="mt-6 max-w-md text-base leading-relaxed text-muted md:text-lg"
+      >
+        {sub}
+      </motion.p>
+
+      {chips && (
+        <motion.div variants={item} className="mt-7 flex flex-wrap gap-3">
+          {chips.map((c) => (
+            <span
+              key={c}
+              className="rounded-full border border-line bg-bg-elev px-4 py-1.5 text-sm font-semibold text-fg"
+            >
+              {c}
+            </span>
+          ))}
+        </motion.div>
+      )}
+
+      {line && (
+        <motion.p
+          variants={item}
+          className="mt-7 border-l-2 border-accent pl-4 text-base font-medium italic text-fg/90"
+        >
+          {line}
+        </motion.p>
+      )}
+
+      <motion.a
+        variants={item}
+        href={cta.href}
+        className="mt-9 inline-flex w-fit items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 text-sm font-semibold text-white hover:opacity-90"
+      >
+        {cta.label}
+        <span>›</span>
+      </motion.a>
+    </motion.div>
+  );
 
   const grid = (
     <div
@@ -105,35 +123,27 @@ export default function VideoFeature({
         reverse ? "md:[&>*:first-child]:order-2" : ""
       }`}
     >
-      <FadeIn>
-        <Details
-          eyebrow={eyebrow}
-          title={title}
-          sub={sub}
-          chips={chips}
-          line={line}
-          cta={cta}
-        />
-      </FadeIn>
-      <div className={`relative w-full ${ASPECT[aspect]}`}>
+      {details}
+      <motion.div
+        className={`relative w-full ${ASPECT[aspect]}`}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: shown ? 1 : 0 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+      >
         <ScrollCanvas
           sectionRef={sectionRef}
           base={framesBase}
           count={frameCount}
           fade={fade}
         />
-      </div>
+      </motion.div>
     </div>
   );
 
   // Tall section; inner content pins while the frame sequence scrubs with scroll.
+  // Mobile slightly taller (slower scrub), desktop shorter (less scroll).
   return (
-    <section
-      ref={sectionRef}
-      /* Pin travel = height − 100dvh. Mobile shorter (faster scrub), desktop
-         taller (slower/more deliberate) — opposite feels per device. */
-      className="relative h-[120vh] w-full bg-bg md:h-[185vh]"
-    >
+    <section ref={sectionRef} className="relative h-[140vh] w-full bg-bg md:h-[150vh]">
       <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 pb-10 pt-24 md:px-12 md:pt-20">
         {grid}
       </div>
