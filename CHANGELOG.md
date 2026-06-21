@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-06-22 · Reorder sections — Karnataka "Decoded" leads
+
+- New section order (each copy keeps its clip): §1 Powered by AI "Every brand.
+  Every zone. Decoded." (Karnataka), §2 For Brands "Find the space…" (cube),
+  §3 For Property Owners "List smarter. Lease faster." (iso-city), §4 Location
+  Intelligence "Decide with data…" (portrait tower).
+- Alternating layout preserved (S1 right, S2 left, S3 right, S4 left); §1 Karnataka
+  keeps its edge-feather.
+
 ## 2026-06-22 · Mobile fix (play-in-view), 80% scrub completion, real logo
 
 - **Mobile rework:** video scroll-scrubbing is desktop-only — on touch it stutters
