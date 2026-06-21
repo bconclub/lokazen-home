@@ -39,9 +39,9 @@ export default function Home() {
         }
         sub="Tell us your category. Lokazen matches you to the zones, footfall, and spaces where you'll actually perform, not just whatever's vacant."
         cta={{ label: "Looking For A Space", href: HUB }}
-        framesBase="/frames/s1v2"
+        framesBase="/frames/sec2"
         frameCount={49}
-        aspect="portraitWide"
+        aspect="square"
         reverse
       />
 

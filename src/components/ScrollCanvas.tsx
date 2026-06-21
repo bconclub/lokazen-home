@@ -4,7 +4,9 @@ import { useEffect, useRef, type RefObject } from "react";
 
 const FADE_MASK =
   "radial-gradient(ellipse 64% 62% at 50% 45%, #000 32%, transparent 78%)";
-const COMPLETE_AT = 0.8;
+// Clip finishes exactly as the pin releases, so the next section comes in right
+// when the animation ends — no extra dead scroll at the tail.
+const COMPLETE_AT = 1;
 
 /**
  * Scroll-driven image-sequence player (the Apple/Sony technique). Preloads a

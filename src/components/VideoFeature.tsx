@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import ScrollCanvas from "@/components/ScrollCanvas";
+import FadeIn from "@/components/FadeIn";
 
 type VideoFeatureProps = {
   eyebrow: string;
@@ -104,14 +105,16 @@ export default function VideoFeature({
         reverse ? "md:[&>*:first-child]:order-2" : ""
       }`}
     >
-      <Details
-        eyebrow={eyebrow}
-        title={title}
-        sub={sub}
-        chips={chips}
-        line={line}
-        cta={cta}
-      />
+      <FadeIn>
+        <Details
+          eyebrow={eyebrow}
+          title={title}
+          sub={sub}
+          chips={chips}
+          line={line}
+          cta={cta}
+        />
+      </FadeIn>
       <div className={`relative w-full ${ASPECT[aspect]}`}>
         <ScrollCanvas
           sectionRef={sectionRef}
@@ -126,7 +129,7 @@ export default function VideoFeature({
   // Tall section; inner content pins while the frame sequence scrubs with scroll.
   return (
     <section ref={sectionRef} className="relative w-full bg-bg" style={{ height: "160vh" }}>
-      <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 py-8 md:px-12">
+      <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 pb-10 pt-24 md:px-12 md:pt-20">
         {grid}
       </div>
     </section>

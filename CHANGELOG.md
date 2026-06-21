@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-06-22 · New §2 clip, snap-to-next on clip end, top padding, text fade-in
+
+- §2 (For Brands) → new Section 2 clip (BFI/PFI cube), 49-frame WebP sequence.
+- Clip now completes at 100% of pin travel (COMPLETE_AT=1) so the next section
+  comes in right as the animation ends — no trailing dead scroll.
+- Top padding on section content (pt-24/md:pt-20) so the heading clears the fixed
+  logo header (was colliding with "Powered By AI").
+- Text (eyebrow/H1/sub/CTA) fades + rises in on scroll-into-view via new FadeIn.
+
 ## 2026-06-22 · Mobile-smooth scrub: image-sequence canvas (Apple technique)
 
 - Replaced video.currentTime scrubbing (janky on real phones) with a frame-sequence
