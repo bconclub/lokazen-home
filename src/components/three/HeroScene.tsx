@@ -23,9 +23,11 @@ function PlaceholderVector() {
       <mesh ref={mesh} scale={1.6}>
         <icosahedronGeometry args={[1, 0]} />
         <meshStandardMaterial
-          color="#c9a86a"
-          metalness={0.9}
-          roughness={0.15}
+          color="#ff5a1e"
+          emissive="#f01e1e"
+          emissiveIntensity={0.25}
+          metalness={0.85}
+          roughness={0.2}
           flatShading
         />
       </mesh>
@@ -44,8 +46,8 @@ export default function HeroScene() {
       <Suspense fallback={null}>
         <ambientLight intensity={0.5} />
         <directionalLight position={[5, 5, 5]} intensity={2} />
-        <pointLight position={[-5, -2, 3]} intensity={1.2} color="#3b6e6a" />
-        <pointLight position={[4, -3, 2]} intensity={1} color="#c9a86a" />
+        <pointLight position={[-5, -2, 3]} intensity={1.4} color="#ff5a1e" />
+        <pointLight position={[4, -3, 2]} intensity={1} color="#f01e1e" />
         <PlaceholderVector />
         <EffectComposer>
           <Bloom

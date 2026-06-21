@@ -1,26 +1,46 @@
 @import "tailwindcss";
 
 :root {
-  /* Lokazen palette — dark, premium, zen (provisional, locks to screens) */
-  --bg: #0a0a0b;
-  --bg-elev: #141417;
-  --fg: #f5f5f2;
-  --muted: #8a8a85;
-  --accent: #c9a86a;   /* gold */
-  --accent-2: #3b6e6a; /* deep teal */
-  --line: rgba(245, 245, 242, 0.08);
+  /* Lokazen palette — sampled from lokazen.in: vermilion on near-black */
+  --bg: #0a0a0b;          /* page base, near-black */
+  --bg-elev: #141316;     /* elevated dark surfaces */
+  --bg-light: #ffffff;    /* light content sections */
+  --fg: #ffffff;          /* primary text on dark */
+  --fg-dark: #0a0a0b;     /* primary text on light */
+  --muted: #9a9a9f;       /* secondary text on dark */
+  --muted-dark: #6b6b70;  /* secondary text on light */
+  --accent: #ff5a1e;      /* vermilion orange — primary */
+  --accent-2: #f01e1e;    /* red — gradient end */
+  --glow: rgba(255, 90, 30, 0.22); /* warm hero radial glow */
+  --line: rgba(255, 255, 255, 0.08);
+  --line-dark: rgba(10, 10, 11, 0.1);
 }
 
 @theme inline {
   --color-bg: var(--bg);
   --color-bg-elev: var(--bg-elev);
+  --color-bg-light: var(--bg-light);
   --color-fg: var(--fg);
+  --color-fg-dark: var(--fg-dark);
   --color-muted: var(--muted);
+  --color-muted-dark: var(--muted-dark);
   --color-accent: var(--accent);
   --color-accent-2: var(--accent-2);
   --color-line: var(--line);
+  --color-line-dark: var(--line-dark);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+}
+
+/* Brand vermilion gradient — reuse on headlines, CTAs, logo */
+.text-gradient {
+  background: linear-gradient(95deg, var(--accent) 0%, var(--accent-2) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.bg-gradient-brand {
+  background: linear-gradient(95deg, var(--accent) 0%, var(--accent-2) 100%);
 }
 
 html {

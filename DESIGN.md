@@ -42,36 +42,53 @@ Whole page is built around **animated 3D vectors** (user-supplied). Every sectio
 
 ## 3. Visual System  *(provisional — locks when screens arrive)*
 
-### Color  *(dark, premium, "zen" — placeholder until screens)*
+### Color — LOCKED (sampled from live lokazen.in)
 | Token | Value | Use |
 |---|---|---|
-| `--bg` | `#0A0A0B` | page base, near-black |
-| `--bg-elev` | `#141417` | elevated surfaces |
-| `--fg` | `#F5F5F2` | primary text, warm white |
-| `--muted` | `#8A8A85` | secondary text |
-| `--accent` | `#C9A86A` | gold — CTAs, highlights (premium RE) |
-| `--accent-2` | `#3B6E6A` | deep teal — zen secondary |
-| `--line` | `rgba(245,245,242,0.08)` | hairlines |
+| `--bg` | `#0A0A0B` | page base, near-black (dark sections) |
+| `--bg-elev` | `#141316` | elevated dark surfaces, nav, pills |
+| `--bg-light` | `#FFFFFF` | light content sections (alternating) |
+| `--fg` | `#FFFFFF` | text on dark |
+| `--fg-dark` | `#0A0A0B` | text on light |
+| `--muted` | `#9A9A9F` | secondary on dark |
+| `--muted-dark` | `#6B6B70` | secondary on light |
+| `--accent` | `#FF5A1E` | vermilion orange — primary |
+| `--accent-2` | `#F01E1E` | red — gradient end |
+| `--glow` | `rgba(255,90,30,0.22)` | warm hero radial glow |
 
-### Type  *(provisional)*
-- **Display:** a tight grotesk / serif-display — TBD from screens (candidates: Geist, Satoshi, or an editorial serif).
-- **Body:** clean sans (Geist Sans / Inter).
-- Big editorial headings, generous tracking on labels (uppercase, letter-spacing 0.08em).
+- **Signature gradient:** `linear-gradient(95deg, #FF5A1E → #F01E1E)` — on key headline words ("Prime Properties"), CTAs, logo "Loka", badge dot. Helpers: `.text-gradient`, `.bg-gradient-brand`.
+- **Rhythm:** dark hero/feature sections alternate with white content sections (mirrors the real site).
+
+### Type
+- **Display:** ultra-bold grotesk, very tight leading (~0.98), tight tracking. Currently **Geist** Extrabold/Black (close match). Swap candidates if exact match wanted: General Sans / Clash Display / Satoshi.
+- **Body:** Geist Sans. Labels: uppercase, tracking ~0.08em, small.
+- Headlines are HUGE (hero ~8xl/128px desktop), centered.
 
 ### Layout
-- 12-col, max-width ~1280px content, but 3D canvas is full-bleed behind.
-- Generous whitespace. Content sits in lower-third / side gutters so 3D breathes.
+- Centered hero composition (not lower-third) — matches real site.
+- Floating rounded nav bar, blurred, pinned top.
+- Max content width ~1280px; 3D canvas / clip full-bleed behind.
 
 ---
 
-## 4. The Four Sections  *(structure TBD from screens)*
+## 4. The Four Sections — PROPOSED (condensed from live site, needs user confirm)
 
-> Placeholder skeleton — fill exact copy + assigned 3D vector as each screen is shared. We build **one section at a time, in order, until done.**
+> Real lokazen.in has ~9 blocks. For the 3D landing we condense to **4**. Build one at a time, in order, until done. Each gets a Higgs Field scroll-scrubbed clip + a vector.
 
-1. **Section 1 — Hero.** Brand statement + primary 3D vector + CTA. `[ ] screen  [ ] vector  [ ] built`
-2. **Section 2 — ?**  `[ ] screen  [ ] vector  [ ] built`
-3. **Section 3 — ?**  `[ ] screen  [ ] vector  [ ] built`
-4. **Section 4 — ?**  `[ ] screen  [ ] vector  [ ] built`
+1. **Section 1 — Hero** ✅ *built (placeholder vector)*
+   - Copy: badge "Commercial Real Estate · Bangalore" → "Connecting Brands & **Prime Properties**" → "India's First AI Powered Commercial Real Estate Platform" → CTAs Find Space / List Property.
+   - Vector: hero centerpiece. `[x] copy  [ ] Higgs clip  [ ] vector  [x] built(placeholder)`
+2. **Section 2 — How It Works / AI Matching** (the engine)
+   - Condenses "How It Works" 4 steps + "Dual AI Scoring (BFI/PFI)". Sign Up → AI Analyzes → Top 5 Matches → Close Deal.
+   - Vector: an AI/data-flow or scoring object. `[ ] copy  [ ] clip  [ ] vector  [ ] built`
+3. **Section 3 — Location Intelligence / Brand Map** (the proof)
+   - Condenses "Brand Placements map" + "Brand Intelligence / zones" + "Powered by Location Intelligence" (footfall, demographics, competitor, accessibility). Bangalore 20+ micro-markets.
+   - Vector: a 3D map / globe / city object. `[ ] copy  [ ] clip  [ ] vector  [ ] built`
+4. **Section 4 — Stats + CTA + Footer** (the close)
+   - "500+ Properties · 100+ Brands · Instant · 20+ Areas" → "Ready to Find Your Perfect Match?" CTA → footer (contact, links).
+   - Vector: closing hero object. `[ ] copy  [ ] clip  [ ] vector  [ ] built`
+
+> ⚠️ This 4-section split is MY proposal from the live site. Confirm or re-cut before Section 2.
 
 ---
 
