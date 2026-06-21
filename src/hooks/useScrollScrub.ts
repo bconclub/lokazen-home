@@ -11,11 +11,17 @@ import { useEffect, type RefObject } from "react";
  * Lenis smooth-scroll and in environments where rAF is throttled. Encode clips
  * all-keyframe so each seek decodes one independent frame.
  */
+// Clip reaches its final frame at this fraction of the pin travel; the last
+// stretch is free scroll so you don't crawl through the final frames.
+const COMPLETE_AT = 0.8;
+
 export function useScrollScrub(
   sectionRef: RefObject<HTMLElement | null>,
-  videoRef: RefObject<HTMLVideoElement | null>
+  videoRef: RefObject<HTMLVideoElement | null>,
+  enabled: boolean
 ) {
   useEffect(() => {
+    if (!enabled) return;
     const section = sectionRef.current;
     const v = videoRef.current;
     if (!section || !v) return;
@@ -37,7 +43,9 @@ export function useScrollScrub(
       const travel = rect.height - vh;
       if (travel <= 0) return;
 
-      const p = Math.min(1, Math.max(0, -rect.top / travel));
+      const raw = Math.min(1, Math.max(0, -rect.top / travel));
+      // Finish the clip by COMPLETE_AT of the scroll, then hold the last frame.
+      const p = Math.min(1, raw / COMPLETE_AT);
       const target = p * (duration - 0.05);
 
       if (Math.abs(target - applied) > 1 / 60 && v.readyState >= 1) {
@@ -72,5 +80,5 @@ export function useScrollScrub(
       window.clearInterval(id);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [sectionRef, videoRef]);
+  }, [sectionRef, videoRef, enabled]);
 }

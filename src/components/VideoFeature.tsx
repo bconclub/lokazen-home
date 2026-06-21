@@ -2,6 +2,8 @@
 
 import { useRef } from "react";
 import { useScrollScrub } from "@/hooks/useScrollScrub";
+import { usePlayInView } from "@/hooks/usePlayInView";
+import { useScrubEnabled } from "@/hooks/useScrubEnabled";
 
 type VideoFeatureProps = {
   eyebrow: string;
@@ -103,7 +105,9 @@ export default function VideoFeature({
 }: VideoFeatureProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  useScrollScrub(sectionRef, videoRef);
+  const scrub = useScrubEnabled() && !mediaNode;
+  useScrollScrub(sectionRef, videoRef, scrub);
+  usePlayInView(videoRef, !scrub && !mediaNode);
 
   const details = (
     <Details
@@ -132,6 +136,7 @@ export default function VideoFeature({
             src={videoSrc}
             poster={poster}
             muted
+            loop
             playsInline
             preload="auto"
             className="absolute inset-0 h-full w-full object-contain"
@@ -146,20 +151,20 @@ export default function VideoFeature({
     </div>
   );
 
-  // Static visual (no clip) → normal one-screen section.
-  if (mediaNode) {
+  // Mobile (or static visual) → normal one-screen section, natural scroll.
+  // The clip plays in view (usePlayInView) instead of scrubbing — smooth on touch.
+  if (!scrub) {
     return (
-      <section className="relative flex min-h-screen w-full items-center bg-bg px-6 py-20 md:px-12 md:py-24">
+      <section className="relative flex min-h-[100dvh] w-full items-center bg-bg px-6 py-16">
         {grid}
       </section>
     );
   }
 
-  // Clip → tall section; inner content pins while the clip scrubs with scroll.
-  // Shorter section = less scroll per frame = more sensitive scrub.
+  // Desktop → tall section; inner content pins while the clip scrubs with scroll.
   return (
     <section ref={sectionRef} className="relative w-full bg-bg" style={{ height: "160vh" }}>
-      <div className="sticky top-0 flex h-screen w-full items-center px-6 py-8 md:px-12">
+      <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 py-8 md:px-12">
         {grid}
       </div>
     </section>
