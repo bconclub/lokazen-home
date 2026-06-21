@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-06-22 · Mobile-smooth scrub: image-sequence canvas (Apple technique)
+
+- Replaced video.currentTime scrubbing (janky on real phones) with a frame-sequence
+  drawn to <canvas> — the Apple/Sony/Samsung approach. New `ScrollCanvas` preloads a
+  clip's 49 WebP frames (lazy, as the section nears) and paints the scroll-mapped
+  frame; no video decode/seek, so it scrubs smoothly on mobile hardware.
+- Extracted 49-frame WebP sequences per clip (720px) → /public/frames/<clip>/.
+- Removed video <video>/useScrollScrub/useIsMobile/-m variants; 80% completion kept.
+- Frames are 720px for now (1080p later); the win is smoothness on real devices.
+
+
 ## 2026-06-22 · Scroll-scrub on mobile too (with light clip variants)
 
 - Re-enabled scroll-scrub on mobile (was play-in-view) so the scroll effect runs on

@@ -1,8 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { useScrollScrub } from "@/hooks/useScrollScrub";
-import { useIsMobile } from "@/hooks/useIsMobile";
+import ScrollCanvas from "@/components/ScrollCanvas";
 
 type VideoFeatureProps = {
   eyebrow: string;
@@ -11,29 +10,22 @@ type VideoFeatureProps = {
   chips?: string[];
   line?: string;
   cta: { label: string; href: string };
-  /** clip source — omit when supplying mediaNode */
-  videoSrc?: string;
-  poster?: string;
-  /** custom visual instead of a clip (e.g. a code-built figure) */
-  mediaNode?: React.ReactNode;
-  /** clip aspect — controls the media column box */
+  /** frame-sequence prefix, e.g. "/frames/s4" */
+  framesBase: string;
+  /** number of frames in the sequence */
+  frameCount: number;
+  /** media-box aspect */
   aspect?: "square" | "wide" | "tall" | "portrait" | "portraitWide";
   /** flip columns: visual left, details right */
   reverse?: boolean;
-  /** feather the clip's edges to transparent (for clips whose bg isn't pure black) */
+  /** feather edges to transparent (clips whose bg isn't pure black) */
   fade?: boolean;
 };
-
-// Radial edge-feather so a clip with a non-black background melts into the page.
-// Fully transparent well before the box edge → no visible rectangle.
-const FADE_MASK =
-  "radial-gradient(ellipse 64% 62% at 50% 45%, #000 32%, transparent 78%)";
 
 const ASPECT: Record<string, string> = {
   square: "aspect-square",
   wide: "aspect-video",
   tall: "aspect-[4/3]",
-  // portrait clips — cap width so the height fits inside the pinned viewport
   portrait: "aspect-[496/864] mx-auto max-w-[360px]",
   portraitWide: "aspect-[560/752] mx-auto max-w-[440px]",
 };
@@ -45,7 +37,10 @@ function Details({
   chips,
   line,
   cta,
-}: Pick<VideoFeatureProps, "eyebrow" | "title" | "sub" | "chips" | "line" | "cta">) {
+}: Pick<
+  VideoFeatureProps,
+  "eyebrow" | "title" | "sub" | "chips" | "line" | "cta"
+>) {
   return (
     <div className="flex flex-col">
       <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-accent">
@@ -95,32 +90,13 @@ export default function VideoFeature({
   chips,
   line,
   cta,
-  videoSrc,
-  poster,
-  mediaNode,
+  framesBase,
+  frameCount,
   aspect = "square",
   reverse = false,
   fade = false,
 }: VideoFeatureProps) {
   const sectionRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const mobile = useIsMobile();
-  // Scroll-scrub on every device; serve the lighter -m clip on mobile so seeking
-  // stays smooth.
-  useScrollScrub(sectionRef, videoRef, !mediaNode);
-  const src =
-    mobile && videoSrc ? videoSrc.replace(/\.mp4$/, "-m.mp4") : videoSrc;
-
-  const details = (
-    <Details
-      eyebrow={eyebrow}
-      title={title}
-      sub={sub}
-      chips={chips}
-      line={line}
-      cta={cta}
-    />
-  );
 
   const grid = (
     <div
@@ -128,42 +104,26 @@ export default function VideoFeature({
         reverse ? "md:[&>*:first-child]:order-2" : ""
       }`}
     >
-      {details}
+      <Details
+        eyebrow={eyebrow}
+        title={title}
+        sub={sub}
+        chips={chips}
+        line={line}
+        cta={cta}
+      />
       <div className={`relative w-full ${ASPECT[aspect]}`}>
-        {mediaNode ? (
-          mediaNode
-        ) : (
-          <video
-            ref={videoRef}
-            src={src}
-            poster={poster}
-            muted
-            loop
-            playsInline
-            preload="auto"
-            className="absolute inset-0 h-full w-full object-contain"
-            style={
-              fade
-                ? { maskImage: FADE_MASK, WebkitMaskImage: FADE_MASK }
-                : undefined
-            }
-          />
-        )}
+        <ScrollCanvas
+          sectionRef={sectionRef}
+          base={framesBase}
+          count={frameCount}
+          fade={fade}
+        />
       </div>
     </div>
   );
 
-  // Static visual (no clip) → normal one-screen section.
-  if (mediaNode) {
-    return (
-      <section className="relative flex min-h-[100dvh] w-full items-center bg-bg px-6 py-16 md:px-12">
-        {grid}
-      </section>
-    );
-  }
-
-  // Clip → tall section; inner content pins while the clip scrubs with scroll
-  // (every device; mobile gets the lighter -m clip for smooth seeking).
+  // Tall section; inner content pins while the frame sequence scrubs with scroll.
   return (
     <section ref={sectionRef} className="relative w-full bg-bg" style={{ height: "160vh" }}>
       <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 py-8 md:px-12">

@@ -19,8 +19,8 @@ export default function Home() {
         }
         sub="One AI reading all of Bangalore at once. 37,189 outlets, 22,494 brands, 40 zones, matched in real time."
         cta={{ label: "Go to Intelligence", href: HUB }}
-        videoSrc="/video/s4.mp4"
-        poster="/video/s4-poster.jpg"
+        framesBase="/frames/s4"
+        frameCount={49}
         aspect="square"
         fade
       />
@@ -39,8 +39,8 @@ export default function Home() {
         }
         sub="Tell us your category. Lokazen matches you to the zones, footfall, and spaces where you'll actually perform, not just whatever's vacant."
         cta={{ label: "Looking For A Space", href: HUB }}
-        videoSrc="/video/s1v2.mp4"
-        poster="/video/s1v2-poster.jpg"
+        framesBase="/frames/s1v2"
+        frameCount={49}
         aspect="portraitWide"
         reverse
       />
@@ -57,8 +57,8 @@ export default function Home() {
         }
         sub="Drop the TO-LET banner and the cold calls. Lokazen puts your space in front of brands that fit, and filters out everyone who doesn't."
         cta={{ label: "List Property", href: HUB }}
-        videoSrc="/video/s1.mp4"
-        poster="/video/s1-poster.jpg"
+        framesBase="/frames/s1"
+        frameCount={49}
         aspect="tall"
       />
 
@@ -74,8 +74,8 @@ export default function Home() {
         }
         sub="Real-time footfall, category mix, and brand density across 40 Bangalore zones, before you commit to anything."
         cta={{ label: "Explore Intelligence", href: HUB }}
-        videoSrc="/video/s3.mp4"
-        poster="/video/s3-poster.jpg"
+        framesBase="/frames/s3"
+        frameCount={49}
         aspect="portrait"
         reverse
       />
