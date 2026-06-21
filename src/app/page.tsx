@@ -57,9 +57,9 @@ export default function Home() {
         }
         sub="Drop the TO-LET banner and the cold calls. Lokazen puts your space in front of brands that fit, and filters out everyone who doesn't."
         cta={{ label: "List Property", href: HUB }}
-        framesBase="/frames/s1"
+        framesBase="/frames/s3"
         frameCount={49}
-        aspect="tall"
+        aspect="portrait"
       />
 
       {/* ===== SECTION 4 — Location intelligence (portrait tower, visual left) ===== */}
@@ -74,9 +74,9 @@ export default function Home() {
         }
         sub="Real-time footfall, category mix, and brand density across 40 Bangalore zones, before you commit to anything."
         cta={{ label: "Explore Intelligence", href: HUB }}
-        framesBase="/frames/s3"
+        framesBase="/frames/s1"
         frameCount={49}
-        aspect="portrait"
+        aspect="tall"
         reverse
       />
     </main>

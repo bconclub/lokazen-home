@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-06-22 · Swap §3/§4 clips
+
+- §3 (For Property Owners) now uses the portrait-tower sequence; §4 (Location
+  Intelligence) now uses the iso-city map sequence. Copy + alternating sides unchanged.
+
 ## 2026-06-22 · New §2 clip, snap-to-next on clip end, top padding, text fade-in
 
 - §2 (For Brands) → new Section 2 clip (BFI/PFI cube), 49-frame WebP sequence.
