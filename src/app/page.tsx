@@ -2,7 +2,7 @@ import VideoFeature from "@/components/VideoFeature";
 import GlobalReachSection from "@/components/GlobalReachSection";
 import OwnerVisual from "@/components/OwnerVisual";
 
-const HUB = "/platform";
+const HUB = "#";
 
 export default function Home() {
   return (
