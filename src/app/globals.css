@@ -2,7 +2,7 @@
 
 :root {
   /* Lokazen palette — sampled from lokazen.in: vermilion on near-black */
-  --bg: #0a0a0b;          /* page base, near-black */
+  --bg: #000000;          /* pure black — matches the clips' black corners (no box seam) */
   --bg-elev: #141316;     /* elevated dark surfaces */
   --bg-light: #ffffff;    /* light content sections */
   --fg: #ffffff;          /* primary text on dark */
