@@ -1,6 +1,5 @@
 import VideoFeature from "@/components/VideoFeature";
 import GlobalReachSection from "@/components/GlobalReachSection";
-import OwnerVisual from "@/components/OwnerVisual";
 
 const HUB = "#";
 
@@ -57,8 +56,9 @@ export default function Home() {
         sub="Skip the cold calls and TO-LET banners. Lokazen surfaces your space to brands that actually fit, and filters out everyone who doesn't."
         line="Fewer questions. Better tenants. Real demand data."
         cta={{ label: "List Your Space", href: HUB }}
-        mediaNode={<OwnerVisual />}
-        aspect="tall"
+        videoSrc="/video/s3.mp4"
+        poster="/video/s3-poster.jpg"
+        aspect="square"
         reverse
       />
 
