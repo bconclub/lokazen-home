@@ -16,7 +16,7 @@ type VideoFeatureProps = {
   /** custom visual instead of a clip (e.g. a code-built figure) */
   mediaNode?: React.ReactNode;
   /** clip aspect — controls the media column box */
-  aspect?: "square" | "wide" | "tall";
+  aspect?: "square" | "wide" | "tall" | "portrait";
   /** flip columns: visual left, details right */
   reverse?: boolean;
 };
@@ -25,6 +25,8 @@ const ASPECT: Record<string, string> = {
   square: "aspect-square",
   wide: "aspect-video",
   tall: "aspect-[4/3]",
+  // portrait clip — cap width so its height fits inside the pinned viewport
+  portrait: "aspect-[496/864] mx-auto max-w-[360px]",
 };
 
 function Details({
