@@ -1,4 +1,5 @@
 import HeroCanvas from "@/components/three/HeroCanvas";
+import ScrollVideo from "@/components/ScrollVideo";
 
 export default function Home() {
   return (
@@ -96,9 +97,43 @@ export default function Home() {
         </div>
 
         <div className="absolute bottom-6 right-6 z-10 text-[10px] uppercase tracking-widest text-muted">
-          Section 1 / 4
+          Hero
         </div>
       </section>
+
+      {/* ===== SECTION 1 — AI MATCHING (scroll-scrubbed video) ===== */}
+      <ScrollVideo
+        src="/video/section1.mp4"
+        poster="/video/section1-poster.jpg"
+        heightVh={280}
+        objectFit="contain"
+      >
+        <div className="absolute left-6 top-24 z-10 md:left-16">
+          <p className="text-xs uppercase tracking-[0.28em] text-muted">
+            01 · AI Matching Engine
+          </p>
+        </div>
+        <div className="absolute bottom-6 right-6 text-[10px] uppercase tracking-widest text-muted">
+          Section 1 / 4
+        </div>
+      </ScrollVideo>
+
+      {/* ===== SECTION 2 — LOCATION INTELLIGENCE (scroll-scrubbed video) ===== */}
+      <ScrollVideo
+        src="/video/section2.mp4"
+        poster="/video/section2-poster.jpg"
+        heightVh={280}
+        objectFit="contain"
+      >
+        <div className="absolute left-6 top-24 z-10 md:left-16">
+          <p className="text-xs uppercase tracking-[0.28em] text-muted">
+            02 · Location Intelligence
+          </p>
+        </div>
+        <div className="absolute bottom-6 right-6 text-[10px] uppercase tracking-widest text-muted">
+          Section 2 / 4
+        </div>
+      </ScrollVideo>
     </main>
   );
 }

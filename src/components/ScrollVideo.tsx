@@ -15,6 +15,8 @@ type ScrollVideoProps = {
    * scroll. Higher = slower, more cinematic scrub.
    */
   heightVh?: number;
+  /** contain = letterbox (keeps edge UI); cover = fill+crop. Default contain. */
+  objectFit?: "contain" | "cover";
   className?: string;
 };
 
@@ -31,6 +33,7 @@ export default function ScrollVideo({
   poster,
   children,
   heightVh = 300,
+  objectFit = "contain",
   className = "",
 }: ScrollVideoProps) {
   const wrap = useRef<HTMLDivElement>(null);
@@ -55,7 +58,7 @@ export default function ScrollVideo({
       style={{ height: `${heightVh}vh` }}
       className={`relative w-full ${className}`}
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden">
+      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden bg-bg">
         <video
           ref={video}
           src={src}
@@ -63,7 +66,9 @@ export default function ScrollVideo({
           muted
           playsInline
           preload="auto"
-          className="absolute inset-0 h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full ${
+            objectFit === "cover" ? "object-cover" : "object-contain"
+          }`}
         />
         {children ? (
           <div className="relative z-10 h-full w-full">{children}</div>
