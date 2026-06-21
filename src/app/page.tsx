@@ -77,6 +77,7 @@ export default function Home() {
         poster="/video/s4-poster.jpg"
         aspect="square"
         reverse
+        fade
       />
     </main>
   );

@@ -19,7 +19,14 @@ type VideoFeatureProps = {
   aspect?: "square" | "wide" | "tall" | "portrait" | "portraitWide";
   /** flip columns: visual left, details right */
   reverse?: boolean;
+  /** feather the clip's edges to transparent (for clips whose bg isn't pure black) */
+  fade?: boolean;
 };
+
+// Radial edge-feather so a clip with a non-black background melts into the page.
+// Fully transparent well before the box edge → no visible rectangle.
+const FADE_MASK =
+  "radial-gradient(ellipse 64% 62% at 50% 45%, #000 32%, transparent 78%)";
 
 const ASPECT: Record<string, string> = {
   square: "aspect-square",
@@ -92,6 +99,7 @@ export default function VideoFeature({
   mediaNode,
   aspect = "square",
   reverse = false,
+  fade = false,
 }: VideoFeatureProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -127,6 +135,11 @@ export default function VideoFeature({
             playsInline
             preload="auto"
             className="absolute inset-0 h-full w-full object-contain"
+            style={
+              fade
+                ? { maskImage: FADE_MASK, WebkitMaskImage: FADE_MASK }
+                : undefined
+            }
           />
         )}
       </div>
