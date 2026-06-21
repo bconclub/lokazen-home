@@ -143,7 +143,7 @@ export default function VideoFeature({
   // Tall section; inner content pins while the frame sequence scrubs with scroll.
   // Mobile slightly taller (slower scrub), desktop shorter (less scroll).
   return (
-    <section ref={sectionRef} className="relative h-[140vh] w-full bg-bg md:h-[150vh]">
+    <section ref={sectionRef} className="relative h-[230vh] w-full bg-bg md:h-[150vh]">
       <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 pb-10 pt-24 md:px-12 md:pt-20">
         {grid}
       </div>

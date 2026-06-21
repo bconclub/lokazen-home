@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-06-22 · Mobile scrub much slower (was too fast)
+
+- Mobile section 140vh → 230vh: pin travel 40vh → 130vh, so the clip scrubs over
+  ~104vh of scroll (was ~32vh). A single swipe no longer blasts through the whole
+  animation. Desktop unchanged (150vh).
+
 ## 2026-06-22 · Proper staggered fade-ins + per-device scroll length
 
 - Real entrance animations: eyebrow → heading → sub → chips/line → button fade +
