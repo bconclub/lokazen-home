@@ -27,7 +27,7 @@ const ASPECT: Record<string, string> = {
   square: "aspect-square",
   wide: "aspect-video",
   tall: "aspect-[4/3]",
-  portrait: "aspect-[496/864] mx-auto max-w-[360px]",
+  portrait: "aspect-[496/864] mx-auto max-w-[440px]",
   portraitWide: "aspect-[560/752] mx-auto max-w-[440px]",
 };
 

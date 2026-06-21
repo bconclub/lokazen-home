@@ -1,10 +1,12 @@
 import VideoFeature from "@/components/VideoFeature";
+import ScrollSnap from "@/components/ScrollSnap";
 
 const HUB = "#";
 
 export default function Home() {
   return (
     <main className="relative bg-bg">
+      <ScrollSnap />
       {/* ===== SECTION 1 — The AI payoff (Karnataka, visual right) ===== */}
       <VideoFeature
         eyebrow="Powered by AI"

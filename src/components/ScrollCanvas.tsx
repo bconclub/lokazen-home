@@ -4,9 +4,9 @@ import { useEffect, useRef, type RefObject } from "react";
 
 const FADE_MASK =
   "radial-gradient(ellipse 64% 62% at 50% 45%, #000 32%, transparent 78%)";
-// Clip finishes at ~85% of the pin travel, then a short tail snaps to the next
-// section — so you don't scroll the whole clip before it moves on.
-const COMPLETE_AT = 0.85;
+// Clip reaches its last frame at 80% of the pin travel; ScrollSnap then advances
+// to the next section at the same point, so the animation finishes and moves on.
+const COMPLETE_AT = 0.8;
 
 /**
  * Scroll-driven image-sequence player (the Apple/Sony technique). Preloads a

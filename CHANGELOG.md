@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-22 · Auto-snap to next section at 80% + bigger §3 portrait
+
+- New ScrollSnap: once a pinned clip reaches 80%, auto-advances (smooth) to the next
+  section so the next clip starts — skips the long scroll-out tail. Downward-only,
+  one-shot per section, cooldown so it never fights the user. Lenis on desktop,
+  native smooth scroll on mobile. COMPLETE_AT back to 0.8.
+- §3 portrait clip enlarged (max-w 360 → 440) so it fills tighter, less empty space.
+
 ## 2026-06-22 · Tighten scroll pacing (less scroll per section)
 
 - Section height 160vh → 130vh: pin travel halved (60vh → 30vh), so each clip plays
