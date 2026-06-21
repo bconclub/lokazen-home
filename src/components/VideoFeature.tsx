@@ -2,8 +2,7 @@
 
 import { useRef } from "react";
 import { useScrollScrub } from "@/hooks/useScrollScrub";
-import { usePlayInView } from "@/hooks/usePlayInView";
-import { useScrubEnabled } from "@/hooks/useScrubEnabled";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 type VideoFeatureProps = {
   eyebrow: string;
@@ -105,9 +104,12 @@ export default function VideoFeature({
 }: VideoFeatureProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const scrub = useScrubEnabled() && !mediaNode;
-  useScrollScrub(sectionRef, videoRef, scrub);
-  usePlayInView(videoRef, !scrub && !mediaNode);
+  const mobile = useIsMobile();
+  // Scroll-scrub on every device; serve the lighter -m clip on mobile so seeking
+  // stays smooth.
+  useScrollScrub(sectionRef, videoRef, !mediaNode);
+  const src =
+    mobile && videoSrc ? videoSrc.replace(/\.mp4$/, "-m.mp4") : videoSrc;
 
   const details = (
     <Details
@@ -133,7 +135,7 @@ export default function VideoFeature({
         ) : (
           <video
             ref={videoRef}
-            src={videoSrc}
+            src={src}
             poster={poster}
             muted
             loop
@@ -151,17 +153,17 @@ export default function VideoFeature({
     </div>
   );
 
-  // Mobile (or static visual) → normal one-screen section, natural scroll.
-  // The clip plays in view (usePlayInView) instead of scrubbing — smooth on touch.
-  if (!scrub) {
+  // Static visual (no clip) → normal one-screen section.
+  if (mediaNode) {
     return (
-      <section className="relative flex min-h-[100dvh] w-full items-center bg-bg px-6 py-16">
+      <section className="relative flex min-h-[100dvh] w-full items-center bg-bg px-6 py-16 md:px-12">
         {grid}
       </section>
     );
   }
 
-  // Desktop → tall section; inner content pins while the clip scrubs with scroll.
+  // Clip → tall section; inner content pins while the clip scrubs with scroll
+  // (every device; mobile gets the lighter -m clip for smooth seeking).
   return (
     <section ref={sectionRef} className="relative w-full bg-bg" style={{ height: "160vh" }}>
       <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 py-8 md:px-12">

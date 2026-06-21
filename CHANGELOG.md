@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-22 · Scroll-scrub on mobile too (with light clip variants)
+
+- Re-enabled scroll-scrub on mobile (was play-in-view) so the scroll effect runs on
+  phones. To keep seeking smooth, serve downscaled all-keyframe `-m.mp4` clips
+  (≤540px, ~0.5–1MB) on viewports <768px; desktop keeps the full clips.
+- `useIsMobile` (mobile-first default so phones don't double-load the full clip).
+- Removed `usePlayInView` / `useScrubEnabled` (single scrub path now).
+
 ## 2026-06-22 · Reorder sections — Karnataka "Decoded" leads
 
 - New section order (each copy keeps its clip): §1 Powered by AI "Every brand.
