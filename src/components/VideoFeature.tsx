@@ -28,8 +28,9 @@ const ASPECT: Record<string, string> = {
   square: "aspect-square",
   wide: "aspect-video",
   tall: "aspect-[4/3]",
-  portrait: "aspect-[496/864] mx-auto max-w-[440px]",
-  portraitWide: "aspect-[560/752] mx-auto max-w-[440px]",
+  // smaller on mobile so text + tall clip fit one pinned screen (no clipping)
+  portrait: "aspect-[496/864] mx-auto max-w-[200px] md:max-w-[440px]",
+  portraitWide: "aspect-[560/752] mx-auto max-w-[220px] md:max-w-[440px]",
 };
 
 const container: Variants = {
@@ -144,7 +145,7 @@ export default function VideoFeature({
   // Mobile slightly taller (slower scrub), desktop shorter (less scroll).
   return (
     <section ref={sectionRef} className="relative h-[230vh] w-full bg-bg md:h-[150vh]">
-      <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 pb-10 pt-24 md:px-12 md:pt-20">
+      <div className="sticky top-0 flex h-[100dvh] w-full items-center px-6 pb-8 pt-20 md:px-12">
         {grid}
       </div>
     </section>

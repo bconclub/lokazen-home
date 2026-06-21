@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-22 · Fix §3 portrait overflow on mobile
+
+- Portrait clip was 570px tall on mobile → content overflowed the pinned viewport,
+  clipping the text and leaving awkward space. Cap portrait smaller on mobile
+  (max-w 200px / portraitWide 220px; desktop unchanged 440px) + trim top padding
+  (pt-20). §3 content now 653px, fits the ~700px pin area cleanly.
+
 ## 2026-06-22 · Mobile scrub much slower (was too fast)
 
 - Mobile section 140vh → 230vh: pin travel 40vh → 130vh, so the clip scrubs over
