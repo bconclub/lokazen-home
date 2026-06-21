@@ -134,6 +134,185 @@ export default function Home() {
           Section 2 / 4
         </div>
       </ScrollVideo>
+
+      {/* ===== SECTION 3 — HOW IT WORKS (light) ===== */}
+      <section className="bg-bg-light px-6 py-24 text-fg-dark md:px-16 md:py-32">
+        <div className="mx-auto max-w-7xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+            Simple &amp; Fast Process
+          </p>
+          <h2 className="mt-3 text-4xl font-extrabold tracking-tight md:text-6xl">
+            How It <span className="text-gradient">Works</span>
+          </h2>
+          <p className="mt-4 max-w-xl text-base text-muted-dark">
+            From onboarding to deal closure — powered by AI in just 4 steps.
+          </p>
+
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                n: "01",
+                t: "Sign Up & Onboard",
+                d: "Create your profile as a Brand or Property Owner. Complete onboarding in under 5 minutes.",
+                tag: "5 minutes",
+              },
+              {
+                n: "02",
+                t: "AI Analyzes Data",
+                d: "Our AI engine processes your requirements with location intelligence and market data.",
+                tag: "Real-time processing",
+              },
+              {
+                n: "03",
+                t: "Get Top 5 Matches",
+                d: "Receive your Top 5 AI-scored matches with detailed insights and instant notifications.",
+                tag: "Top 5 curated",
+              },
+              {
+                n: "04",
+                t: "Close the Deal",
+                d: "Review, shortlist, and connect directly. Our platform facilitates smooth deal closure.",
+                tag: "Deal completed",
+              },
+            ].map((s) => (
+              <div
+                key={s.n}
+                className="rounded-2xl border border-line-dark bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
+              >
+                <span className="text-gradient text-3xl font-black">{s.n}</span>
+                <h3 className="mt-4 text-lg font-bold">{s.t}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-dark">
+                  {s.d}
+                </p>
+                <span className="mt-5 inline-block rounded-full bg-accent/10 px-3 py-1 text-xs font-semibold text-accent">
+                  {s.tag}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-16 grid grid-cols-2 gap-6 border-t border-line-dark pt-12 sm:grid-cols-4">
+            {[
+              ["95%", "Match Success"],
+              ["Instant", "Avg Response"],
+              ["500+", "Properties"],
+              ["20+", "Areas"],
+            ].map(([v, l]) => (
+              <div key={l}>
+                <p className="text-3xl font-extrabold md:text-4xl">{v}</p>
+                <p className="mt-1 text-sm text-muted-dark">{l}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== SECTION 4 — STATS + CTA + FOOTER (dark) ===== */}
+      <section className="relative overflow-hidden bg-bg px-6 py-24 md:px-16 md:py-32">
+        <div
+          className="pointer-events-none absolute left-1/2 top-0 h-[60vh] w-[90vh] -translate-x-1/2 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, var(--glow) 0%, transparent 65%)",
+          }}
+        />
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid grid-cols-2 gap-8 border-b border-line pb-16 md:grid-cols-4">
+            {[
+              ["500+", "Properties Listed", "↑ 23% this month"],
+              ["100+", "Brands", "Growing fast"],
+              ["Instant", "Avg. Match Time", "Lightning fast"],
+              ["20+", "Areas Covered", "Bangalore"],
+            ].map(([v, l, s]) => (
+              <div key={l}>
+                <p className="text-4xl font-extrabold md:text-5xl">{v}</p>
+                <p className="mt-2 text-sm font-medium text-fg">{l}</p>
+                <p className="mt-1 text-xs text-accent">{s}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="py-20 text-center">
+            <h2 className="mx-auto max-w-3xl text-4xl font-extrabold tracking-tight md:text-6xl">
+              Ready to Find Your{" "}
+              <span className="text-gradient">Perfect Match?</span>
+            </h2>
+            <p className="mx-auto mt-5 max-w-xl text-base text-muted">
+              Join hundreds of brands and property owners already using our
+              AI-powered platform.
+            </p>
+            <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+              <a
+                href="#find"
+                className="rounded-full bg-gradient-brand px-8 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-90"
+              >
+                Brand — Looking For Space
+              </a>
+              <a
+                href="#list"
+                className="rounded-full border border-line bg-bg-elev/60 px-8 py-3.5 text-sm font-semibold text-fg backdrop-blur-md transition-colors hover:border-fg/30"
+              >
+                List Property
+              </a>
+            </div>
+          </div>
+
+          {/* footer */}
+          <footer className="grid gap-10 border-t border-line pt-14 md:grid-cols-[2fr_1fr_1fr]">
+            <div>
+              <span className="text-xl font-extrabold tracking-tight">
+                <span className="text-gradient">Loka</span>
+                <span className="text-fg">zen</span>
+              </span>
+              <p className="mt-3 max-w-xs text-sm text-muted">
+                AI Powered Commercial Real Estate Matchmaking Platform.
+              </p>
+              <p className="mt-6 text-xs text-muted">
+                Unit of N &amp; G Ventures
+                <br />
+                support@lokazen.in
+                <br />
+                Kokarya Business Synergy Centre, Jayanagar, Bengaluru 560041
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+                Quick Links
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-fg/80">
+                {["How It Works", "Success Stories", "Careers", "Blog", "Contact Us"].map(
+                  (x) => (
+                    <li key={x}>
+                      <a href="#" className="hover:text-accent">
+                        {x}
+                      </a>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted">
+                For Users
+              </p>
+              <ul className="mt-4 space-y-2 text-sm text-fg/80">
+                {["For Brands", "List Property", "Brand Login", "Property Login"].map(
+                  (x) => (
+                    <li key={x}>
+                      <a href="#" className="hover:text-accent">
+                        {x}
+                      </a>
+                    </li>
+                  )
+                )}
+              </ul>
+            </div>
+          </footer>
+          <p className="mt-12 text-center text-xs text-muted">
+            © 2026 Lokazen. All rights reserved. · Section 4 / 4
+          </p>
+        </div>
+      </section>
     </main>
   );
 }
