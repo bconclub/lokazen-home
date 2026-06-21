@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-22 · Tighten scroll pacing (less scroll per section)
+
+- Section height 160vh → 130vh: pin travel halved (60vh → 30vh), so each clip plays
+  over much less scroll.
+- Clip completes at 85% of travel (COMPLETE_AT 1 → 0.85), then a short tail snaps to
+  the next section. Two knobs to dial: section height (scroll amount) + completion %.
+
 ## 2026-06-22 · Swap §3/§4 clips
 
 - §3 (For Property Owners) now uses the portrait-tower sequence; §4 (Location
