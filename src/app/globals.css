@@ -72,6 +72,18 @@ html.lenis body {
   color: var(--bg);
 }
 
+/* Mobile (touch): native section snapping — cooperates with touch momentum,
+   so the next section locks in cleanly instead of resting in the dead gap.
+   Desktop uses the JS ScrollSnap (Lenis) instead. */
+@media (pointer: coarse) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  main > section {
+    scroll-snap-align: start;
+  }
+}
+
 @keyframes dashflow {
   to {
     stroke-dashoffset: -60;

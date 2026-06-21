@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-06-22 · Reliable section snapping (CSS on mobile, JS on desktop)
+
+- Mobile snap was unreliable: JS scroll-to fights touch momentum. Split by platform:
+  mobile now uses native CSS scroll-snap (`scroll-snap-type: y proximity` +
+  `scroll-snap-align: start` under `pointer: coarse`) which cooperates with momentum;
+  desktop keeps the Lenis JS snap (verified advancing past the gap with a real scroll).
+- Fixes the "too much space after a section" gap — sections lock in cleanly.
+
 ## 2026-06-22 · Device-specific scroll speed (desktop slower, mobile faster)
 
 - Section height now responsive: mobile 120vh (pin travel 20vh → snappier), desktop
