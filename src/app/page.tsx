@@ -19,9 +19,9 @@ export default function Home() {
         }
         sub="Tell us your category. Lokazen matches you to the zones, footfall, and spaces where you'll actually perform, not just whatever's vacant."
         cta={{ label: "Looking For A Space", href: HUB }}
-        videoSrc="/video/s2.mp4"
-        poster="/video/s2-poster.jpg"
-        aspect="square"
+        videoSrc="/video/s1v2.mp4"
+        poster="/video/s1v2-poster.jpg"
+        aspect="portraitWide"
       />
 
       {/* ===== SECTION 2 — For property owners (visual left) ===== */}
@@ -36,9 +36,9 @@ export default function Home() {
         }
         sub="Drop the TO-LET banner and the cold calls. Lokazen puts your space in front of brands that fit, and filters out everyone who doesn't."
         cta={{ label: "List Property", href: HUB }}
-        videoSrc="/video/s3.mp4"
-        poster="/video/s3-poster.jpg"
-        aspect="portrait"
+        videoSrc="/video/s1.mp4"
+        poster="/video/s1-poster.jpg"
+        aspect="tall"
         reverse
       />
 
@@ -54,9 +54,9 @@ export default function Home() {
         }
         sub="Real-time footfall, category mix, and brand density across 40 Bangalore zones, before you commit to anything."
         cta={{ label: "Explore Intelligence", href: HUB }}
-        videoSrc="/video/s1.mp4"
-        poster="/video/s1-poster.jpg"
-        aspect="tall"
+        videoSrc="/video/s3.mp4"
+        poster="/video/s3-poster.jpg"
+        aspect="portrait"
       />
 
       {/* ===== SECTION 4 — The AI payoff (visual left, Karnataka) ===== */}
