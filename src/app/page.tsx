@@ -1,73 +1,83 @@
 import VideoFeature from "@/components/VideoFeature";
-import GlobalReachSection from "@/components/GlobalReachSection";
 
 const HUB = "#";
 
 export default function Home() {
   return (
     <main className="relative bg-bg">
-      {/* ===== SECTION 1 — What Lokazen is (iso city, orange beam) ===== */}
-      <VideoFeature
-        eyebrow="AI-Powered Location Intelligence"
-        title={
-          <>
-            Every brand.
-            <br />
-            Every zone.
-            <br />
-            <span className="text-gradient">Bangalore.</span>
-          </>
-        }
-        sub="Lokazen matches commercial space to the brands that actually fit it. 37,189 outlets tracked. 22,494 brands mapped. 40 zones decoded."
-        cta={{ label: "Explore Lokazen", href: HUB }}
-        videoSrc="/video/s2.mp4"
-        poster="/video/s2-poster.jpg"
-        aspect="square"
-      />
-
-      {/* ===== SECTION 2 — For brands (tower BFI+PFI) ===== */}
+      {/* ===== SECTION 1 — For brands (visual right) ===== */}
       <VideoFeature
         eyebrow="For Brands"
         title={
           <>
-            Find the spot
+            Find the space
             <br />
             your brand was
             <br />
             <span className="text-gradient">built for.</span>
           </>
         }
-        sub="Tell us your category. We surface the zones, footfall, and spaces where you'll actually perform, not just whatever's vacant."
-        line="From café to flagship, matched to fit."
+        sub="Tell us your category. Lokazen matches you to the zones, footfall, and spaces where you'll actually perform, not just whatever's vacant."
         cta={{ label: "Looking For A Space", href: HUB }}
-        videoSrc="/video/s1.mp4"
-        poster="/video/s1-poster.jpg"
-        aspect="tall"
+        videoSrc="/video/s2.mp4"
+        poster="/video/s2-poster.jpg"
+        aspect="square"
       />
 
-      {/* ===== SECTION 3 — Property listings (orbit tower) ===== */}
+      {/* ===== SECTION 2 — For property owners (visual left) ===== */}
       <VideoFeature
-        eyebrow="Live Listings"
+        eyebrow="For Property Owners"
         title={
           <>
-            Real spaces.
+            List smarter.
             <br />
-            Real locations.
-            <br />
-            <span className="text-gradient">On the map.</span>
+            <span className="text-gradient">Lease faster.</span>
           </>
         }
-        sub="Browse verified commercial properties across Bangalore as they drop, plotted where they actually are, with rent, photos, and fit score upfront."
-        line="No banners. No guesswork. Just what's available now."
-        cta={{ label: "Browse Spaces", href: HUB }}
+        sub="Drop the TO-LET banner and the cold calls. Lokazen puts your space in front of brands that fit, and filters out everyone who doesn't."
+        cta={{ label: "List Property", href: HUB }}
         videoSrc="/video/s3.mp4"
         poster="/video/s3-poster.jpg"
         aspect="portrait"
         reverse
       />
 
-      {/* ===== SECTION 4 — Intelligence (world map, arcs) ===== */}
-      <GlobalReachSection ctaHref={HUB} />
+      {/* ===== SECTION 3 — Location intelligence (visual right) ===== */}
+      <VideoFeature
+        eyebrow="Location Intelligence"
+        title={
+          <>
+            Decide with data,
+            <br />
+            <span className="text-gradient">not guesswork.</span>
+          </>
+        }
+        sub="Real-time footfall, category mix, and brand density across 40 Bangalore zones, before you commit to anything."
+        cta={{ label: "Explore Intelligence", href: HUB }}
+        videoSrc="/video/s1.mp4"
+        poster="/video/s1-poster.jpg"
+        aspect="tall"
+      />
+
+      {/* ===== SECTION 4 — The AI payoff (visual left, Karnataka) ===== */}
+      <VideoFeature
+        eyebrow="Powered by AI"
+        title={
+          <>
+            Every brand.
+            <br />
+            Every zone.
+            <br />
+            <span className="text-gradient">Decoded.</span>
+          </>
+        }
+        sub="One AI reading all of Bangalore at once. 37,189 outlets, 22,494 brands, 40 zones, matched in real time."
+        cta={{ label: "Go to Intelligence", href: HUB }}
+        videoSrc="/video/s4.mp4"
+        poster="/video/s4-poster.jpg"
+        aspect="square"
+        reverse
+      />
     </main>
   );
 }
