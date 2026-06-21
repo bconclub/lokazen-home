@@ -1,5 +1,6 @@
 import VideoFeature from "@/components/VideoFeature";
 import ScrollSnap from "@/components/ScrollSnap";
+import BrandFooter from "@/components/BrandFooter";
 
 const HUB = "#";
 
@@ -60,8 +61,8 @@ export default function Home() {
         sub="Drop the TO-LET banner and the cold calls. Lokazen puts your space in front of brands that fit, and filters out everyone who doesn't."
         cta={{ label: "List Property", href: HUB }}
         framesBase="/frames/s3"
-        frameCount={49}
-        aspect="portrait"
+        frameCount={61}
+        aspect="square"
       />
 
       {/* ===== SECTION 4 — Location intelligence (portrait tower, visual left) ===== */}
@@ -81,6 +82,8 @@ export default function Home() {
         aspect="tall"
         reverse
       />
+
+      <BrandFooter />
     </main>
   );
 }

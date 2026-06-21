@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-22 · New §3 clip (square) + bottom brand logo
+
+- §3 (For Property Owners) → new Section 3 clip (square 960², 61-frame sequence);
+  aspect square (was portrait).
+- Add BrandFooter: large centered Lokazen logo + wordmark + "Powered By AI" + © line
+  at the bottom of the page, on mobile and desktop.
+
 ## 2026-06-22 · Consistent desktop text→clip spacing
 
 - Portrait clips were centered in their column, floating far from the text while
